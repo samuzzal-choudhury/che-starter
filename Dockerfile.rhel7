@@ -1,7 +1,10 @@
 FROM registry.access.redhat.com/rhel7
 
 # add RUN label in image to generate report for container-capabilities-scanner
-LABEL RUN='docker run --privileged -d $IMAGE'
+LABEL RUN='docker run --privileged -d $IMAGE' \
+      git-url="https://github.com/samuzzal-choudhury/che-starter" \
+      git-sha="8bd1859" \
+      email-ids="samuzzal@redhat.com" \
 
 # touch /usr/bin/yum inside container image to modify the file time (mtime)
 # this will report issue via $rpm -V yum
