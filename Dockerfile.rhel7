@@ -1,4 +1,4 @@
-FROM registry.centos.org/centos/centos:7
+FROM registry.access.redhat.com/rhel7
 
 ARG VERSION=1.0-SNAPSHOT
 
@@ -10,8 +10,9 @@ ENV OSO_ADDRESS tsrv.devshift.net:8443
 ENV OSO_DOMAIN_NAME tsrv.devshift.net
 ENV KUBERNETES_CERTS_CA_FILE /opt/che-starter/tsrv.devshift.net.cer
 
-# took off yum -y update command from here, for pipeline-scanner to report updates
-RUN yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel git && \
+# enable rhel-7-server-htb-rpms repository to install java packages
+RUN yum-config-manager -q -y --enable rhel-7-server-htb-rpms && \
+    yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel git && \
     yum clean all
 
 WORKDIR $CHE_STARTER_HOME
