@@ -35,7 +35,7 @@ EXPOSE 10000
 # add RUN label in image to generate report for container-capabilities-scanner
 LABEL RUN='docker run --privileged -d $IMAGE' \
       git-url='https://github.com/samuzzal-choudhury/che-starter' \
-      git-sha='8bd1859' \
+      git-sha='5a835617078aa4873d585e42179a79b2e43d59d3' \
       email-ids='samuzzal@redhat.com'
 
 # touch /usr/bin/yum inside container image to modify the file time (mtime)
