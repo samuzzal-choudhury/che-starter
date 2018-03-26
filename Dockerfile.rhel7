@@ -10,9 +10,11 @@ ENV OSO_ADDRESS tsrv.devshift.net:8443
 ENV OSO_DOMAIN_NAME tsrv.devshift.net
 ENV KUBERNETES_CERTS_CA_FILE /opt/che-starter/tsrv.devshift.net.cer
 
-# enable rhel-7-server-htb-rpms repository to install java packages
+# enable rhel-7-server-htb-rpms repository for fetching latest java package
+# intentionally install older version from brew to show update of java via pipeline-scanner
 RUN yum-config-manager -q -y --enable rhel-7-server-htb-rpms && \
-    yum install -y java-1.6.0-openjdk java-1.6.0-openjdk-devel git && \
+    yum install -y git && \
+    yum install -y http://download.eng.bos.redhat.com/brewroot/packages/java-1.6.0-openjdk/1.6.0.41/1.13.13.0.el7_3/x86_64/java-1.6.0-openjdk-1.6.0.41-1.13.13.0.el7_3.x86_64.rpm http://download.eng.bos.redhat.com/brewroot/packages/java-1.6.0-openjdk/1.6.0.41/1.13.13.0.el7_3/x86_64/java-1.6.0-openjdk-devel-1.6.0.41-1.13.13.0.el7_3.x86_64.rpm && \
     yum clean all
 
 WORKDIR $CHE_STARTER_HOME
