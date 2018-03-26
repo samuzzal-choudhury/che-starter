@@ -12,7 +12,7 @@ ENV KUBERNETES_CERTS_CA_FILE /opt/che-starter/tsrv.devshift.net.cer
 
 # enable rhel-7-server-htb-rpms repository to install java packages
 RUN yum-config-manager -q -y --enable rhel-7-server-htb-rpms && \
-    yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel git && \
+    yum install -y java-1.6.0-openjdk java-1.6.0-openjdk-devel git && \
     yum clean all
 
 WORKDIR $CHE_STARTER_HOME
